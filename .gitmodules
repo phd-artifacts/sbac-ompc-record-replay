@@ -1,0 +1,15 @@
+[submodule "application/tb-tdg-no-loop"]
+	path = application/tb-tdg-no-loop
+	url = git@gitlab.com:ompcluster/task-bench.git
+	branch = tdg-no-loop
+[submodule "application/main-loop"]
+	path = application/tb-main-loop
+	url = git@gitlab.com:ompcluster/task-bench.git
+	branch = main-loop
+[submodule "application/taskgraph_experiments"]
+	path = application/taskgraph_experiments
+	url = git@gitlab.com:Rulior/taskgraph_experiments.git
+[submodule "application/tb-main-loop"]
+	path = application/tb-main-loop
+	url = git@gitlab.com:ompcluster/task-bench.git
+	branch = main-loop

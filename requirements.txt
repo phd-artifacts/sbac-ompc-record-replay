@@ -1,0 +1,2 @@
+click
+spinner==1.0.1

@@ -1,0 +1,6 @@
+sifs/*.sif
+.venv
+.vscode
+__pycache__/
+a.log
+*.html

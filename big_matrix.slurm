@@ -6,6 +6,7 @@
 #SBATCH --nodelist sorgan-cpu[1-4]
 #SBATCH --reservation remy_sched
 #SBATCH --out=big_matrix.log
+#SBATCH --export=ALL
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang

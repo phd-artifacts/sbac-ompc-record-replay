@@ -11,7 +11,7 @@ applications:
     command: >
       OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ ompc_tb_iter_num}}
       OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
-      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ nodes/2 }}
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ node_count/2 }}
       OMPCLUSTER_RESCHEDULING_INTERVAL=0
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/{{ image }}

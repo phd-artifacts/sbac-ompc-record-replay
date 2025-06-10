@@ -1,0 +1,52 @@
+metadata:
+  description: tb kernel compare benchmark 
+  version: "1.0"
+  runs: 2
+  timeout: 100
+  retry: 1000
+  envvars: []
+
+applications:
+  tb-compare:
+    command: >
+      mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
+      apptainer exec --nv sifs/{{ image }}
+      application/{{ tb_path }}/ompcluster/main
+      -steps 32
+      -type {{type}} 
+      -kernel compute_bound 
+      -iter {{iter}} 
+      -width 32
+
+    capture:
+      - type: all
+        name: full_output
+
+      - type: matches
+        name: tb-time
+        pattern: "Elapsed Time"
+        lambda: >
+          lambda x: (lambda m,e: float(m) * 10**int(e))(
+          *x.split("Elapsed Time ")[1]
+            .split(" seconds")[0]
+            .strip()
+            .lower()
+            .split("e", 1)
+          )
+
+benchmarks:
+  tb-compare:
+    image : 
+      - scheduler-main.sif
+      - improv-144.sif
+    tb_path: 
+      - tb-main-loop
+      - tb-tdg-no-loop
+
+    zip:
+      [image, tb_path]
+    node_count : [1,2,4]
+    type:
+      - fft
+    iter:
+      - 1000

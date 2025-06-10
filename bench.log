@@ -1,0 +1,43 @@
+Running benchmark on hosts: sorgan-cpu1,sorgan-cpu2,sorgan-cpu3,sorgan-cpu4
+Running with retry=1000 times
+Remaining tries: 999
+Remaining tries: 998
+Remaining tries: 997
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+Running with retry=1000 times
+Remaining tries: 999
+  Running Benchmarks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:13
+          name  ...      time
+0   tb-compare  ...  0.572158
+1   tb-compare  ...  0.598345
+2   tb-compare  ...  0.813581
+3   tb-compare  ...  0.820285
+4   tb-compare  ...  1.861874
+5   tb-compare  ...  1.106885
+6   tb-compare  ...  0.628098
+7   tb-compare  ...  0.633693
+8   tb-compare  ...  0.709543
+9   tb-compare  ...  0.722996
+10  tb-compare  ...  1.220961
+11  tb-compare  ...  1.015706
+
+[12 rows x 10 columns]

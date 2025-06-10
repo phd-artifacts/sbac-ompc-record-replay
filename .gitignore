@@ -4,3 +4,4 @@ sifs/*.sif
 __pycache__/
 a.log
 *.html
+*.out

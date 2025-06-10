@@ -1,5 +1,5 @@
 metadata:
-  description: simulator
+  description: simulator by itself
   version: "1.0"
   runs: 2
   timeout: 100

@@ -5,7 +5,7 @@
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]
 #SBATCH --reservation remy_sched
-#SBATCH --out=tb-compare.log
+#SBATCH --out=big_matrix.log
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang

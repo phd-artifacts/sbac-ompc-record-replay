@@ -1,5 +1,5 @@
 metadata:
-  description: tb kernel compare benchmark 
+  description: big matrix benchmark
   version: "1.0"
   runs: 2
   timeout: 100
@@ -7,19 +7,20 @@ metadata:
   envvars: []
 
 applications:
-  tb-compare:
+  big-matrix:
     command: >
-      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ ompc_tb_iter_num}}
+      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ nodes+10 }}
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ nodes }}
       OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
-      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ nodes/2 }}
       OMPCLUSTER_RESCHEDULING_INTERVAL=0
+      OMPCLUSTER_PRINTING_END_INIT=./application-output/matrix_{{ nodes }}
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
-      apptainer exec --nv sifs/{{ image }}
-      application/{{ tb_path }}/ompcluster/main
+      apptainer exec --nv sifs/improv-144.sif
+      application/tb-tdg-no-loop/ompcluster/main
       -steps 32
-      -type {{type}} 
+      -type fft
       -kernel compute_bound 
-      -iter {{iter}} 
+      -iter 10000
       -width 32
 
     capture:
@@ -39,21 +40,5 @@ applications:
           )
 
 benchmarks:
-  tb-compare:
-    image : 
-      - scheduler-main.sif
-      - improv-144.sif
-    tb_path: 
-      - tb-main-loop
-      - tb-tdg-no-loop
-    zip:
-      [image, tb_path]
-
-    ompc_tb_iter_num: [10, 50, 100]
-
-    node_count : [1,2,4]
-    type:
-      - fft
-    iter:
-      - 1000
-      - 10000
+  big-matrix:
+    node_count : [2]

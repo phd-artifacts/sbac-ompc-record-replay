@@ -1,2 +1,2 @@
 click
-spinner==1.0.1
+spinner==1.1.7b0

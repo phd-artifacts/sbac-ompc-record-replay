@@ -5,7 +5,7 @@
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]
 #SBATCH --reservation remy_sched
-#SBATCH --out=bench.log
+#SBATCH --out=tb-compare.log
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang
@@ -23,6 +23,6 @@ echo "Running benchmark on hosts: $hosts"
 source .venv/bin/activate
 
 
-spinner run tb-compare.yaml \
+spinner run big_matrix.yaml \
     --extra-args "hosts=$hosts" \
     -o tb-compare.pkl

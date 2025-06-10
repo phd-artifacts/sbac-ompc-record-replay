@@ -1,0 +1,62 @@
+metadata:
+  description: simulator
+  version: "1.0"
+  runs: 2
+  timeout: 100
+  retry: 10
+  envvars: []
+
+applications:
+  time-measure:
+    command: >
+      SIMU_RANDOM=1
+      SIMU_RR={{sim_rr}}
+      SIMU_TASK_NUMBER={{sim_task_number}}
+      SIMU_DEVICE_NUMBER={{sim_device_number}}
+      apptainer exec --nv sifs/improv-144.sif
+      application/taskgraph_experiments/simulator
+
+    capture:
+      - type: all
+        name: full_output
+
+  dist-measure:
+    command: >
+      SIMU_RANDOM=1
+      SIMU_RR={{sim_rr}}
+      SIMU_TASK_NUMBER={{sim_task_number}}
+      SIMU_DEVICE_NUMBER={{sim_device_number}}
+      SIMU_DEVIATION={{sim_deviation}} 
+      apptainer exec --nv sifs/improv-144.sif
+      application/taskgraph_experiments/simulator
+
+    capture:
+      - type: all
+        name: full_output
+
+      # - type: matches
+      #   name: tb-time
+      #   pattern: "Elapsed Time"
+      #   lambda: >
+      #     lambda x: (lambda m,e: float(m) * 10**int(e))(
+      #     *x.split("Elapsed Time ")[1]
+      #       .split(" seconds")[0]
+      #       .strip()
+      #       .lower()
+      #       .split("e", 1)
+      #     )
+
+benchmarks:
+  time-measure:
+    sim_rr: 
+      - 2
+    sim_task_number: [100, 500, 1000, 2000, 5000, 10000]
+    sim_device_number: [10, 100, 500, 1000]
+
+  dist-measure:
+    sim_rr: [2, 4, 8, 16]
+    sim_task_number:
+      - 500
+    sim_device_number:
+      - 20
+    sim_deviation: [0, 0.2, 0.4, 0.6, 0.8]

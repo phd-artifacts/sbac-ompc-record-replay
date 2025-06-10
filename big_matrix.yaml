@@ -1,27 +1,28 @@
 metadata:
   description: big matrix benchmark
   version: "1.0"
-  runs: 2
-  timeout: 100
-  retry: 1000
+  runs: 1
+  timeout: 1000
+  retry: 1
   envvars: []
 
 applications:
   big-matrix:
     command: >
-      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ nodes+10 }}
-      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ nodes }}
+      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ node_count+10 }}
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ node_count}}
       OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
       OMPCLUSTER_RESCHEDULING_INTERVAL=0
-      OMPCLUSTER_PRINTING_END_INIT=./application-output/matrix_{{ nodes }}
+      OMPCLUSTER_PRINTING_END_INIT=./application-output/matrix_node_{{ node_count}}
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/improv-144.sif
       application/tb-tdg-no-loop/ompcluster/main
-      -steps 32
-      -type fft
-      -kernel compute_bound 
-      -iter 10000
-      -width 32
+      -steps 64
+      -type nearest
+      -kernel load_imbalance
+      -iter 1000000
+      -width 64
+      -imbalance 0.1
 
     capture:
       - type: all
@@ -39,6 +40,19 @@ applications:
             .split("e", 1)
           )
 
+  simulator-matrix-feed:
+    command: >
+      SIMU_RR={{node_count}}
+      SIMU_MATRIX=./application-output/matrix_node_{{ node_count}}_0
+      apptainer exec --nv sifs/improv-144.sif
+      application/taskgraph_experiments/simulator
+
+    capture:
+      - type: all
+        name: full_output
+
 benchmarks:
   big-matrix:
-    node_count : [2]
+    node_count : [1,2,4]
+  simulator-matrix-feed:
+    node_count : [1,2,4]

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 4
-#SBATCH --time=00:15:00
+#SBATCH --time=10:00:00
 #SBATCH --exclusive
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]
@@ -25,4 +25,4 @@ source .venv/bin/activate
 
 spinner run big_matrix.yaml \
     --extra-args "hosts=$hosts" \
-    -o tb-compare.pkl
+    -o big_matrix.pkl

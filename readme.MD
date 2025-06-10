@@ -69,7 +69,7 @@ apptainer exec sifs/improv-144.sif bash -lc '
 
 ## Directory Layout
 
-```
+```bash
 project-root/
 ├── sifs/                      # Container images
 │   ├── improv-144.sif         # For tb-tdg-no-loop

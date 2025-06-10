@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1
-#SBATCH --time=00:15:00
+#SBATCH --time=10:00:00
 #SBATCH --exclusive
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]

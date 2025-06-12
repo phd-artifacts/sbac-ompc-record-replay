@@ -17,12 +17,11 @@ Pull both images before proceeding:
 
 ```bash
 mkdir -p sifs
-apptainer pull \
-  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854061961 \
-  sifs/improv-144.sif
-apptainer pull \
-  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854063649 \
-  sifs/scheduler-main.sif
+apptainer pull sifs/improv-144.sif \
+  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich@sha256:bf6223df6136e4552b2bbf7f27f68f113e76e447b29396e4312c03f675da9f10
+
+apptainer pull sifs/scheduler-main.sif \
+  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854063649
 ```
 
 ---

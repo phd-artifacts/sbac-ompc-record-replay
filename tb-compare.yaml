@@ -26,18 +26,6 @@ applications:
       - type: all
         name: full_output
 
-      - type: matches
-        name: tb-time
-        pattern: "Elapsed Time"
-        lambda: >
-          lambda x: (lambda m,e: float(m) * 10**int(e))(
-          *x.split("Elapsed Time ")[1]
-            .split(" seconds")[0]
-            .strip()
-            .lower()
-            .split("e", 1)
-          )
-
 benchmarks:
   tb-compare:
     image : 

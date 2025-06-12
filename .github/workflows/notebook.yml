@@ -23,9 +23,17 @@ jobs:
         run: |
           mkdir -p /scratch/rodrigo.freitas/remy-schedulers
           cp *.pkl /scratch/rodrigo.freitas/remy-schedulers/
+          mkdir -p plots
       - name: Execute notebooks
         run: |
           jupyter nbconvert --to notebook --execute big_matrix.ipynb --ExecutePreprocessor.timeout=60 --ExecutePreprocessor.allow_errors=True --output big_matrix_out.ipynb
           jupyter nbconvert --to notebook --execute sim-compare.ipynb --ExecutePreprocessor.timeout=60 --ExecutePreprocessor.allow_errors=True --output sim-compare_out.ipynb
           jupyter nbconvert --to notebook --execute tb-compare.ipynb --ExecutePreprocessor.timeout=60 --ExecutePreprocessor.allow_errors=True --output tb-compare_out.ipynb
+      - name: Upload plots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots
+          path: plots
+          if-no-files-found: warn
 

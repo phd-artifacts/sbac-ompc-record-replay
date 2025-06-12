@@ -81,5 +81,5 @@ project-root/
 
 ## Continuous Integration
 
-A GitHub Actions workflow runs the notebooks automatically. It installs the dependencies from `requirements.txt` using Python 3.12, prepares the benchmark data files and then executes each notebook with `nbconvert`.
+A GitHub Actions workflow runs the notebooks automatically. It installs the dependencies from `requirements.txt` using Python 3.12, prepares the benchmark data files, executes each notebook with `nbconvert`, and uploads the resulting `plots` directory as a workflow artifact.
 

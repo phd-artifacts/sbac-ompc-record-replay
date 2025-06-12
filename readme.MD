@@ -78,3 +78,8 @@ project-root/
     ├── tb-main-loop/          # Main-loop application sources
     └── taskgraph_experiments/ # Simulator
 ```
+
+## Continuous Integration
+
+A GitHub Actions workflow runs the notebooks automatically. It installs the dependencies from `requirements.txt` using Python 3.12, prepares the benchmark data files and then executes each notebook with `nbconvert`.
+

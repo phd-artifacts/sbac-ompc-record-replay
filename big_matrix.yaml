@@ -21,26 +21,10 @@ applications:
       -steps 64
       -type fft
       -kernel load_imbalance
-      -iter 1000000
+      -iter 100000000
       -output 1024
       -width 64
       -imbalance 0.1
-
-    capture:
-      - type: all
-        name: full_output
-
-      - type: matches
-        name: tb-time
-        pattern: "Elapsed Time"
-        lambda: >
-          lambda x: (lambda m,e: float(m) * 10**int(e))(
-          *x.split("Elapsed Time ")[1]
-            .split(" seconds")[0]
-            .strip()
-            .lower()
-            .split("e", 1)
-          )
 
   simulator-matrix-feed:
     command: >
@@ -55,6 +39,6 @@ applications:
 
 benchmarks:
   big-matrix:
-    node_count : [1,2,4]
+    node_count : [2,3,4]
   simulator-matrix-feed:
-    node_count : [1,2,4]
+    node_count : [2,3,4]

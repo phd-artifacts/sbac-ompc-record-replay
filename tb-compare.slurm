@@ -6,6 +6,7 @@
 #SBATCH --nodelist sorgan-cpu[1-4]
 #SBATCH --reservation remy_sched
 #SBATCH --out=tb-compare.log
+#SBATCH --time=10-99:00:00
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang

@@ -3,7 +3,7 @@ metadata:
   version: "1.0"
   runs: 1
   timeout: 1000
-  retry: 1
+  retry: 100
   envvars: []
 
 applications:
@@ -21,14 +21,14 @@ applications:
       -steps 64
       -type fft
       -kernel load_imbalance
-      -iter 100000000
+      -iter 1000000
       -output 1024
       -width 64
-      -imbalance 0.1
+      -imbalance 0.2
 
   simulator-matrix-feed:
     command: >
-      SIMU_RR={{node_count+1}}
+      SIMU_RR={{simu_rr+1}}
       SIMU_MATRIX=./application-output/matrix{{node_count}}node_0
       apptainer exec --nv sifs/improv-144.sif
       application/taskgraph_experiments/simulator
@@ -39,6 +39,6 @@ applications:
 
 benchmarks:
   big-matrix:
-    node_count : [2,3,4]
+    node_count : [4]
   simulator-matrix-feed:
-    node_count : [2,3,4]
+    simu_rr : [2,3,4]

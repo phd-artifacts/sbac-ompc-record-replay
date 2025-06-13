@@ -1,9 +1,9 @@
 metadata:
   description: tb kernel compare benchmark 
   version: "1.0"
-  runs: 2
+  runs: 10
   timeout: 100
-  retry: 1000
+  retry: 5000
   envvars: []
 
 applications:
@@ -16,11 +16,11 @@ applications:
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/{{ image }}
       application/{{ tb_path }}/ompcluster/main
-      -steps 32
+      -steps 16
       -type {{type}} 
       -kernel compute_bound 
       -iter {{iter}} 
-      -width 32
+      -width 16
 
     capture:
       - type: all
@@ -39,9 +39,12 @@ benchmarks:
 
     ompc_tb_iter_num: [10, 50, 100]
 
-    node_count : [1,2,4]
+    node_count : [2,3,4]
     type:
       - fft
     iter:
       - 1000
       - 10000
+      - 1000000
+      - 10000000
+      - 100000000

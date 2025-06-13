@@ -1,7 +1,7 @@
 metadata:
   description: simulator by itself
   version: "1.0"
-  runs: 2
+  runs: 10
   timeout: 100
   retry: 10
   envvars: []
@@ -34,17 +34,6 @@ applications:
       - type: all
         name: full_output
 
-      # - type: matches
-      #   name: tb-time
-      #   pattern: "Elapsed Time"
-      #   lambda: >
-      #     lambda x: (lambda m,e: float(m) * 10**int(e))(
-      #     *x.split("Elapsed Time ")[1]
-      #       .split(" seconds")[0]
-      #       .strip()
-      #       .lower()
-      #       .split("e", 1)
-      #     )
 
 benchmarks:
   time-measure:

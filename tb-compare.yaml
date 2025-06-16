@@ -11,16 +11,16 @@ applications:
     command: >
       OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ ompc_tb_iter_num}}
       OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
-      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ node_count/2 }}
-      OMPCLUSTER_RESCHEDULING_INTERVAL=0
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ ompc_init_iter }}
+      OMPCLUSTER_RESCHEDULING_INTERVAL= {{ ompc_resch_iter }}
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/{{ image }}
       application/{{ tb_path }}/ompcluster/main
-      -steps 16
+      -steps 32
       -type {{type}} 
       -kernel compute_bound 
       -iter {{iter}} 
-      -width 16
+      -width 32
 
     capture:
       - type: all
@@ -39,7 +39,14 @@ benchmarks:
 
     ompc_tb_iter_num: [10, 50, 100]
 
-    node_count : [2,3,4]
+    ompc_init_iter: [2, 3, 5]
+
+    ompc_resch_iter: [0]
+
+    zip:
+      [ompc_tb_iter_num, ompc_init_iter]
+
+    node_count : [2,3,4,8,11]
     type:
       - fft
     iter:

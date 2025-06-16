@@ -39,6 +39,6 @@ applications:
 
 benchmarks:
   big-matrix:
-    node_count : [4]
+    node_count : [11]
   simulator-matrix-feed:
-    simu_rr : [2,3,4]
+    simu_rr : [2,3,4,5,6,7,8,9,10,11]

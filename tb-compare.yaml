@@ -18,7 +18,7 @@ applications:
       application/{{ tb_path }}/ompcluster/main
       -steps 32
       -type {{type}} 
-      -kernel compute_bound 
+      -kernel {{kernel}} 
       -iter {{iter}} 
       -width 32
 
@@ -37,21 +37,21 @@ benchmarks:
     zip:
       [image, tb_path]
 
-    ompc_tb_iter_num: [10, 50, 100]
+    ompc_tb_iter_num: [100]
 
-    ompc_init_iter: [2, 3, 5]
+    ompc_init_iter: [5]
 
     ompc_resch_iter: [0]
-
-    zip:
-      [ompc_tb_iter_num, ompc_init_iter]
-
+    
     node_count : [2,3,4,8,11]
+    
+    kernel:
+      - compute_bound
+      
     type:
       - fft
+      
     iter:
       - 1000
-      - 10000
       - 1000000
-      - 10000000
       - 100000000

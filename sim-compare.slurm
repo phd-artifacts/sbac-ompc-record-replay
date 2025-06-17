@@ -4,7 +4,7 @@
 #SBATCH --exclusive
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]
-#SBATCH --reservation remy_sched
+#SBATCH --qos=highprio
 #SBATCH --out=sim-compare.log
 
 export APPTAINER_UNSHARE_IPC=1

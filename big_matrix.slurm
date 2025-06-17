@@ -4,7 +4,7 @@
 #SBATCH --exclusive
 #SBATCH --partition cpu
 #SBATCH --nodelist sorgan-cpu[1-4]
-#SBATCH --reservation remy_sched
+#SBATCH --qos=highprio
 #SBATCH --out=big_matrix.log
 #SBATCH --export=ALL
 

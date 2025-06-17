@@ -1,7 +1,7 @@
 metadata:
   description: big matrix benchmark
   version: "1.0"
-  runs: 1
+  runs: 5
   timeout: 1000
   retry: 100
   envvars: []

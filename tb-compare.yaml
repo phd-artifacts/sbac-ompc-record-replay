@@ -1,9 +1,9 @@
 metadata:
   description: tb kernel compare benchmark 
   version: "1.0"
-  runs: 10
+  runs: 5
   timeout: 600
-  retry: 5000
+  retry: 100
   envvars: []
 
 applications:
@@ -55,4 +55,4 @@ benchmarks:
     iter:
       - 1000
       - 1000000
-      - 100000000
+      - 10000000

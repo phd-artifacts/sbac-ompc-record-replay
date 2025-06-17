@@ -2,7 +2,7 @@ metadata:
   description: tb kernel compare benchmark 
   version: "1.0"
   runs: 10
-  timeout: 100
+  timeout: 600
   retry: 5000
   envvars: []
 

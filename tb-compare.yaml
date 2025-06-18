@@ -13,6 +13,7 @@ applications:
       OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
       OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ ompc_init_iter }}
       OMPCLUSTER_RESCHEDULING_INTERVAL={{ ompc_resch_iter }}
+      OMPCLUSTER_SCHEDULER={{scheduler}}
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/{{ image }}
       application/{{ tb_path }}/ompcluster/main
@@ -30,12 +31,18 @@ benchmarks:
   tb-compare:
     image : 
       - scheduler-main.sif
+      - scheduler-main.sif
       - improv-144.sif
     tb_path: 
       - tb-main-loop
+      - tb-main-loop
       - tb-tdg-no-loop
+    scheduler:
+      -"heft"
+      -"roundrobin"
+      -"heft"
     zip:
-      [image, tb_path]
+      [image, tb_path, scheduler]
 
     ompc_tb_iter_num: [100]
 

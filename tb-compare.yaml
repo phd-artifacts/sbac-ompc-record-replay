@@ -41,7 +41,7 @@ benchmarks:
 
     ompc_init_iter: [5]
 
-    ompc_resch_iter: [0]
+    ompc_resch_iter: [1000]
 
     # node_count : [2,3,4,8,11]
     node_count : [2,3,4]

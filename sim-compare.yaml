@@ -50,16 +50,14 @@ applications:
 
 benchmarks:
   time-measure-task:
-    sim_rr: 
-      - [2, 4, 8, 16] 
-    sim_task_number: [100, 500, 1000, 2000, 5000, 10000]
+    sim_rr: [2, 4, 8, 16] 
+    sim_task_number: [100, 500, 750, 1000, 2000, 5000, 7500, 10000]
     sim_device_number: [100]
 
   time-measure-device:
-    sim_rr: 
-      - [2, 4, 8, 16] 
+    sim_rr: [2, 4, 8, 16] 
     sim_task_number: [1000]
-    sim_device_number: [10, 100, 500, 1000]
+    sim_device_number: [20, 100, 250, 500, 750, 1000]
 
   dist-measure:
     sim_rr: [2]

@@ -29,7 +29,7 @@ applications:
 
 benchmarks:
   tb-compare:
-    image : 
+    image: 
       - scheduler-main.sif
       - scheduler-main.sif
       - improv-144.sif
@@ -38,9 +38,9 @@ benchmarks:
       - tb-main-loop
       - tb-tdg-no-loop
     scheduler:
-      -"heft"
-      -"roundrobin"
-      -"heft"
+      - "heft"
+      - "roundrobin"
+      - "heft"
     zip:
       [image, tb_path, scheduler]
 

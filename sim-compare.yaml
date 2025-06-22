@@ -60,7 +60,7 @@ benchmarks:
     sim_device_number: [20, 100, 250, 500, 750, 1000]
 
   dist-measure:
-    sim_rr: [2]
+    sim_rr: [2, 4, 8, 16]
     sim_task_number:
       - 500
     sim_device_number:

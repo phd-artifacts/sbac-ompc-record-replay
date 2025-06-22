@@ -10,15 +10,16 @@ We use two pre-built Apptainer images from our GitLab registry:
 
 | Image Purpose                        | Registry Path                                                                                       | Local Filename            |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------- | ------------------------- |
-| Build & runtime for `tb-tdg-no-loop` | `registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854061961` | `sifs/improv-144.sif`     |
-| Build & runtime for `tb-main-loop`   | `registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854063649` | `sifs/scheduler-main.sif` |
+| Build & runtime for `tb-tdg-no-loop` | see below | `sifs/improv-144.sif`     |
+| Build & runtime for `tb-main-loop`   | see below | `sifs/scheduler-main.sif` |
 
 Pull both images before proceeding:
 
 ```bash
 mkdir -p sifs
 apptainer pull sifs/improv-144.sif \
-  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich@sha256:bf6223df6136e4552b2bbf7f27f68f113e76e447b29396e4312c03f675da9f10
+  docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1882106760 
+  
 
 apptainer pull sifs/scheduler-main.sif \
   docker://registry.gitlab.com/ompcluster/containers/build-runtime-img/ubuntu20.04-cuda11.2-mpich:1854063649

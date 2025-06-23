@@ -38,30 +38,39 @@ git submodule update --init --recursive
 ### 1. `tb-tdg-no-loop`
 
 ```bash
-apptainer exec sifs/improv-144.sif bash -lc '
-  export CC=clang CXX=clang++
-  cd application/tb-tdg-no-loop
-  DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./get_deps.sh
-  DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./build_all.sh
+apptainer exec --cleanenv --home "$PWD" \
+  sifs/improv-144.sif \
+  /bin/bash --noprofile --norc -e -c '
+    set -e
+    export CC=clang CXX=clang++
+    cd application/tb-tdg-no-loop
+    DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./get_deps.sh
+    DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./build_all.sh
 '
 ```
 
 ### 2. `tb-main-loop`
 
 ```bash
-apptainer exec sifs/scheduler-main.sif bash -lc '
-  export CC=clang CXX=clang++
-  cd application/tb-main-loop
-  DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./get_deps.sh
-  DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./build_all.sh
+apptainer exec --cleanenv --home "$PWD" \
+  sifs/scheduler-main.sif \
+  /bin/bash --noprofile --norc -e -c '
+    set -e
+    export CC=clang CXX=clang++
+    cd application/tb-main-loop
+    DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./get_deps.sh
+    DEFAULT_FEATURES=0 USE_OMPCLUSTER=1 ./build_all.sh
 '
 ```
 
 ```bash
-apptainer exec sifs/improv-144.sif bash -lc '
-  export CC=clang CXX=clang++
-  cd ./application/taskgraph_experiments
-  make -j
+apptainer exec --cleanenv --home "$PWD" \
+  sifs/improv-144.sif \
+  /bin/bash --noprofile --norc -e -c '
+    set -e
+    export CC=clang CXX=clang++
+    cd application/taskgraph_experiments
+    make -j
 '
 ```
 

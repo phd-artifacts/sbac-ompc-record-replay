@@ -1,0 +1,70 @@
+metadata:
+  description: tb kernel compare benchmark 
+  version: "1.0"
+  runs: 5
+  timeout: 600
+  retry: 100
+  envvars: []
+
+applications:
+  tb-compare:
+    command: >
+      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ ompc_tb_iter_num}}
+      OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ ompc_init_iter }}
+      OMPCLUSTER_RESCHEDULING_INTERVAL={{ ompc_resch_iter }}
+      OMPCLUSTER_SCHEDULER={{scheduler}}
+      mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
+      apptainer exec --nv sifs/{{ image }}
+      application/{{ tb_path }}/ompcluster/main
+      -steps 32
+      -type {{type}} 
+      -kernel {{kernel}} 
+      -iter {{iter}} 
+      -scratch {{scratch}} 
+      -width 32
+      -imbalance 0.8
+
+    capture:
+      - type: all
+        name: full_output
+
+benchmarks:
+  tb-compare:
+    image: 
+      - scheduler-main.sif
+      - scheduler-main.sif
+      - improv-144.sif
+    tb_path: 
+      - tb-main-loop
+      - tb-main-loop
+      - tb-tdg-no-loop
+    scheduler:
+      - "heft"
+      - "graph_roundrobin"
+      - "heft"
+    zip:
+      [image, tb_path, scheduler]
+
+    ompc_tb_iter_num: [100]
+
+    ompc_init_iter: [5]
+
+    ompc_resch_iter: [1000]
+
+    node_count : [2,4,8,12,16,20]
+
+
+    kernel:
+      - load_imbalance 
+
+    type:
+      - stencil_1d
+
+    iter:
+      - 5000
+      - 50000
+      - 100000
+    
+    scratch:
+      - 5000

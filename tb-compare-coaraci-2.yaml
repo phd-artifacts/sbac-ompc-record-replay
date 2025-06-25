@@ -21,7 +21,7 @@ applications:
       -type {{type}} 
       -kernel {{kernel}} 
       -iter {{iter}} 
-      -scratch {{scratch}} 
+      -output {{output}} 
       -width 32
       -imbalance 0.8
 
@@ -66,5 +66,7 @@ benchmarks:
       - 50000
       - 100000
     
-    scratch:
+    output:
+      - 1000
       - 5000
+      

@@ -2,10 +2,11 @@
 #SBATCH -N 4
 #SBATCH --time=10:10:00
 #SBATCH --exclusive
-#SBATCH --partition cpu
-#SBATCH --nodelist sorgan-cpu[1-4]
+#SBATCH --partition all
+#SBATCH --nodelist sorgan-cpu[1-6],sorgan-gpu[1-4]
 #SBATCH --qos=highprio
 #SBATCH --out=tb-compare.log
+#SBATCH --reservation=remy_sbac
 #SBATCH --time=10-99:00:00
 
 export APPTAINER_UNSHARE_IPC=1
@@ -24,6 +25,6 @@ echo "Running benchmark on hosts: $hosts"
 source .venv/bin/activate
 
 
-spinner run tb-compare.yaml \
+spinner run tb-compare-sorgan.yaml \
     --extra-args "hosts=$hosts" \
-    -o tb-compare.pkl
+    -o "pkl/tb-compare-sorgan-$SLURM_JOB_ID.pkl"

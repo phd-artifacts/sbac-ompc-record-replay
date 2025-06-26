@@ -2,10 +2,12 @@
 #SBATCH -N 1
 #SBATCH --time=10:00:00
 #SBATCH --exclusive
-#SBATCH --partition cpu
-#SBATCH --nodelist sorgan-cpu[1-4]
 #SBATCH --qos=highprio
 #SBATCH --out=sim-compare.log
+#SBATCH --partition all
+#SBATCH --nodelist sorgan-cpu[1-6],sorgan-gpu[1-4]
+#SBATCH --reservation=remy_sbac
+#SBATCH --time=10-99:00:00
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang
@@ -23,4 +25,4 @@ source .venv/bin/activate
 
 
 spinner run sim-compare.yaml \
-    -o sim-compare.pkl
+    -o pkl/sim-compare.pkl

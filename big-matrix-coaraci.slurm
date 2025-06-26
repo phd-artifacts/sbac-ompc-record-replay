@@ -3,7 +3,7 @@
 #SBATCH --time=10:00:00
 #SBATCH --exclusive
 #SBATCH --partition=par480-i
-#SBATCH --out=tb-compare-coaraci.log
+#SBATCH --out=big-matrix.log
 
 export APPTAINER_UNSHARE_IPC=1
 export CC=clang

@@ -54,7 +54,7 @@ benchmarks:
     node_count : [2,3,4]
 
     kernel:
-      - compute_bound
+      - load_imbalance
 
     type:
       - fft

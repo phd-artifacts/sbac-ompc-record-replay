@@ -22,7 +22,7 @@ applications:
       -kernel {{kernel}} 
       -iter {{iter}} 
       -width 32
-      -imbalance 0.8
+      -imbalance 0.4
 
     capture:
       - type: all

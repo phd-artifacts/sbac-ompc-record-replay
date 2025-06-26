@@ -1,0 +1,45 @@
+metadata:
+  description: big matrix benchmark
+  version: "1.0"
+  runs: 1
+  timeout: 1000
+  retry: 100
+  envvars: []
+
+applications:
+  big-matrix:
+    command: >
+      OMPCLUSTER_TASKBENCH_ITERATION_NUMBER={{ node_count+10 }}
+      OMPCLUSTER_INITIAL_ITERATION_NUMBER={{ node_count + 4 }}
+      OMPCLUSTER_INITIAL_SCHEDULE_POLICY=1
+      OMPCLUSTER_RESCHEDULING_INTERVAL=2
+      OMPCLUSTER_PRINTING_END_INIT=./application-output/matrix{{node_count}}node
+      OMPCLUSTER_PRINTING_COMPCOST=./application-output/compost{{node_count}}node
+      mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
+      apptainer exec --nv sifs/improv-144.sif
+      application/tb-tdg-no-loop/ompcluster/main
+      -steps 64
+      -type fft
+      -kernel load_imbalance
+      -iter 1000000
+      -output 1024
+      -width 64
+      -imbalance 0.2
+
+  simulator-matrix-feed:
+    command: >
+      SIMU_RR={{simu_rr}}
+      SIMU_MATRIX=./application-output/matrix{{biggest_matrix}}node_0
+      apptainer exec --nv sifs/improv-144.sif
+      application/taskgraph_experiments/simulator
+
+    capture:
+      - type: all
+        name: full_output
+
+benchmarks:
+  big-matrix:
+    node_count : [10]
+  simulator-matrix-feed:
+    simu_rr : [2,3,4,5,6,7,8,9]
+    biggest_matrix: [9] # match biggest node_count

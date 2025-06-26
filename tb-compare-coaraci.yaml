@@ -21,6 +21,7 @@ applications:
       -type {{type}} 
       -kernel {{kernel}} 
       -iter {{iter}} 
+      -output {{output}} 
       -width 32
       -imbalance 0.8
 
@@ -40,7 +41,7 @@ benchmarks:
       - tb-tdg-no-loop
     scheduler:
       - "heft"
-      - "roundrobin"
+      - "graph_roundrobin"
       - "heft"
     zip:
       [image, tb_path, scheduler]
@@ -51,7 +52,7 @@ benchmarks:
 
     ompc_resch_iter: [1000]
 
-    node_count : [2,3,4,5,6,7,8,9,10]
+    node_count : [2,4,8,12,16,20]
 
 
     kernel:
@@ -61,5 +62,9 @@ benchmarks:
       - stencil_1d
 
     iter:
-      - 1000
-      - 2000000
+      - 100000
+      - 10000000 
+
+    output:
+      - 1000000
+

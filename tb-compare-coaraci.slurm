@@ -24,4 +24,4 @@ source .venv/bin/activate
 
 spinner run tb-compare-coaraci.yaml \
     --extra-args "hosts=$hosts" \
-    -o tb-compare-coaraci.pkl
+    -o pkl/tb-compare-coaraci-${SLURM_JOB_ID}.pkl

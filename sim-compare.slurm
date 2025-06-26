@@ -23,4 +23,4 @@ source .venv/bin/activate
 
 
 spinner run sim-compare.yaml \
-    -o sim-compare.pkl
+    -o pkl/sim-compare.pkl

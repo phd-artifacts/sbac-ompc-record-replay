@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -N 4
+#SBATCH -N 10
 #SBATCH --time=10:10:00
 #SBATCH --exclusive
 #SBATCH --partition all

@@ -51,7 +51,7 @@ benchmarks:
     ompc_resch_iter: [1000]
 
     # node_count : [2,3,4,8,11]
-    node_count : [2,3,4]
+    node_count : [2,3,4,5, 6, 8, 8, 9, 10]
 
     kernel:
       - load_imbalance

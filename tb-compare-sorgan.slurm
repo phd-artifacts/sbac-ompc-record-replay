@@ -25,6 +25,6 @@ echo "Running benchmark on hosts: $hosts"
 source .venv/bin/activate
 
 
-spinner run tb-compare-sorgan.yaml \
+spinner -v run tb-compare-sorgan.yaml \
     --extra-args "hosts=$hosts" \
     -o "pkl/tb-compare-sorgan-$SLURM_JOB_ID.pkl"

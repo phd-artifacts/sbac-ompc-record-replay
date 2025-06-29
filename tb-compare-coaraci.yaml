@@ -2,7 +2,7 @@ metadata:
   description: tb kernel compare benchmark 
   version: "1.0"
   runs: 5
-  timeout: 600
+  timeout: 999
   retry: 100
   envvars: []
 
@@ -21,7 +21,6 @@ applications:
       -type {{type}} 
       -kernel {{kernel}} 
       -iter {{iter}} 
-      -output {{output}} 
       -width 32
       -imbalance 0.8
 
@@ -52,19 +51,19 @@ benchmarks:
 
     ompc_resch_iter: [1000]
 
-    node_count : [2,4,8,12,16,20]
+    node_count : [8,12,20]
 
 
     kernel:
       - load_imbalance 
 
     type:
-      - stencil_1d
+      - fft
 
     iter:
-      - 100000
-      - 10000000 
+      - 200000
 
     output:
-      - 1000000
+      - 100
+
 

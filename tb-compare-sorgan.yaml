@@ -17,7 +17,7 @@ applications:
       mpirun -np {{ node_count }} -ppn 1 -hosts "{{ hosts }}"
       apptainer exec --nv sifs/{{ image }}
       application/{{ tb_path }}/ompcluster/main
-      -steps 32
+      -steps 64
       -type {{type}} 
       -kernel {{kernel}} 
       -iter {{iter}} 
